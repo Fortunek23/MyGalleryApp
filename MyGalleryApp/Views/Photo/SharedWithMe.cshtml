@@ -9,8 +9,8 @@
                     foreach (var item in Model.ShareList)
                     {
                         <div class="col-sm-2">
-                            <a href="@Url.Content("~/photography/"+item.Photo.Name)" data-toggle="lightbox" data-title="sample 1 - white" data-gallery="gallery">
-                                <img src="~/photography/@item.Photo.Name" asp-append-version="true" class="img-fluid mb-2" alt="white sample">
+                            <a href="@Url.Content("~/photography/"+item.Name)" data-toggle="lightbox" data-title="sample 1 - white" data-gallery="gallery">
+                                <img src="~/photography/@item.Name" asp-append-version="true" class="img-fluid mb-2" alt="white sample">
                             </a>
                             <a href="@Url.Action("DeletePhoto","photo",new { id=item.PhotoId})" style="float:right">Delete</a>
                             

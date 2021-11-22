@@ -1,4 +1,5 @@
 ﻿using ICSharpCode.SharpZipLib.Zip;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -14,7 +15,9 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace MyGalleryApp.Controllers
+
 {
+    [Authorize]
     public class PhotoController : Controller
     {
         ApplicationDbContext db;
@@ -48,22 +51,20 @@ namespace MyGalleryApp.Controllers
 
             return View(model);
         }
-        public IActionResult Share(int id)
+        public async Task<IActionResult>  Share(int id)
         {
             Share obj = new Share();
 
             var dbphoto = db.Photo.Find(id);
             obj.PhotoId = dbphoto.PhotoId;
             obj.Email = null;
-
-            if (ModelState.IsValid)
-            {
+            obj.Name = dbphoto.Name;
                 
                     db.Shared.Add(obj);
-                     db.SaveChangesAsync();
+                    await db.SaveChangesAsync();
                 
-            }
-            RedirectToAction("SharedWithMe");
+           
+           return RedirectToAction("SharedWithMe");
         }
         
 
@@ -134,7 +135,7 @@ namespace MyGalleryApp.Controllers
             return RedirectToAction("index");
 
         }
-
+       
         // GET: Photos/Edit/5
         public IActionResult Edit(int id)
         {

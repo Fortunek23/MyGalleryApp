@@ -12,7 +12,9 @@ namespace MyGalleryApp.Data
         public int PhotoId { get; set; }
 
         public Photo Photo { get; set; }
-        public string Email { get; set; }
+        public string? Email { get; set; }
+
+        public string Name { get; set; }
 
         public ICollection<Photo> Photos { get; set; }
 

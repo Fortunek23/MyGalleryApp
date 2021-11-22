@@ -20,24 +20,7 @@
             
             <button class="btn btn-primary" type="submit" onclick="@("window.location.href='" + @Url.Action("DownloadZip", "photo") + "'");">Download all</button>
             <form id="frmPhototGraphy" class="form-horizontal" asp-action="AddPhotos" asp-controller="photo" method="post" enctype="multipart/form-data">
-                @*<div class="col-md-6 col-sm-6">
-
-                    <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Photo</label>
-
-                        <div class="col-sm-6 custom-file">
-
-                            <input asp-for="@Model.photo.filePhoto" type="file" class="custom-file-input" multiple="multiple">
-                            <label class="custom-file-label" for="@Model.photo.filePhoto">Choose file</label>
-                            <span asp-validation-for="@Model.photo.filePhoto" class="text-danger"></span>
-
-                        </div>
-                        <div class="col-sm-4"> <button type="submit" class="btn btn-danger">Upload All</button></div>
-                    </div>
-
-
-
-                </div>*@
+                
                 <div class="container">
                     <div class="form-group">
                         <div class="form-group">
