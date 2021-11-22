@@ -1,0 +1,69 @@
+﻿@model MyGalleryApp.Data.Photo
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>Photo</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="PhotoId" />
+            <div hidden="hidden" class="form-group">
+                <label asp-for="UserId" class="control-label"></label>
+                <input asp-for="UserId" class="form-control" />
+                <span asp-validation-for="UserId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Location" class="control-label"></label>
+                <input asp-for="Location" class="form-control" />
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tag" class="control-label"></label>
+                <input asp-for="Tag" class="form-control" />
+                <span asp-validation-for="Tag" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CaptureBy" class="control-label"></label>
+                <input asp-for="CaptureBy" class="form-control" />
+                <span asp-validation-for="CaptureBy" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CaptureDate" class="control-label"></label>
+                <input asp-for="CaptureDate" class="form-control" />
+                <span asp-validation-for="CaptureDate" class="text-danger"></span>
+            </div>
+            <div hidden="hidden" class="form-group">
+                <label asp-for="Path" class="control-label"></label>
+                <input asp-for="Path" class="form-control" />
+                <span asp-validation-for="Path" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
