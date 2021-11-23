@@ -33,13 +33,23 @@ namespace MyGalleryApp.Controllers
 
         }
        
-        public IActionResult Index()
+        public IActionResult Index(string searchString)
         {
             var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             PhotoViewModel viewModel = new PhotoViewModel();
             viewModel.photoList = db.Photo.ToList();
             viewModel.photoList = viewModel.photoList.Where(x => x.UserId == userId).ToList();
             viewModel.photo = new Photo();
+
+            var searchPhotos = from s in db.Photo
+                           select s;
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                searchPhotos = searchPhotos.Where(s => s.Name.Contains(searchString)
+                                       || s.CaptureBy.Contains(searchString));
+                viewModel.photoList = searchPhotos.ToList();
+            }
+
             return View(viewModel);
         }
 

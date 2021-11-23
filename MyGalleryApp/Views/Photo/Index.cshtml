@@ -17,10 +17,19 @@
             
         </div>
         <div class="card-body">
-            
+
             <button class="btn btn-primary" type="submit" onclick="@("window.location.href='" + @Url.Action("DownloadZip", "photo") + "'");">Download all</button>
+            <form asp-action="Index" method="get">
+                <div class="form-actions no-color">
+                    <p>
+                        Find by name or capture by: <input type="text" name="SearchString" value="" />
+                        <input type="submit" value="Search" class="btn btn-default" /> |
+                        <a asp-action="Index">Back to Full List</a>
+                    </p>
+                </div>
+            </form>
             <form id="frmPhototGraphy" class="form-horizontal" asp-action="AddPhotos" asp-controller="photo" method="post" enctype="multipart/form-data">
-                
+
                 <div class="container">
                     <div class="form-group">
                         <div class="form-group">
@@ -51,7 +60,7 @@
                                 <input asp-for="@Model.photo.filePhoto" type="file" class="custom-file-input" multiple="multiple">
                                 <label class="custom-file-label" for="@Model.photo.filePhoto">Choose file</label>
                                 <span asp-validation-for="@Model.photo.filePhoto" class="text-danger"></span>
-                                <div > <button type="submit" class="btn btn-danger">Upload All</button></div>
+                                <div> <button type="submit" class="btn btn-danger">Upload All</button></div>
                             </div>
                         </div>
                     </div>
@@ -63,15 +72,15 @@
                 {
                     foreach (var item in Model.photoList)
                     {
-                <div class="col-sm-2">
-                    <a href="@Url.Content("~/photography/"+item.Name)" data-toggle="lightbox" data-title="sample 1 - white" data-gallery="gallery">
-                        <img src="~/photography/@item.Name" asp-append-version="true" class="img-fluid mb-2" alt="white sample">
-                    </a>
-                    <a href="@Url.Action("DeletePhoto","photo",new { id=item.PhotoId})" style="float:right">Delete</a>
-                    <a asp-action="Details" asp-route-id="@item.PhotoId">Details</a>
-                    <a asp-action="Edit" asp-route-id="@item.PhotoId">Edit</a>
-                    <a asp-action="Share"  asp-route-id="@item.PhotoId">Share</a>
-                </div>
+                        <div class="col-sm-2">
+                            <a href="@Url.Content("~/photography/"+item.Name)" data-toggle="lightbox" data-title="sample 1 - white" data-gallery="gallery">
+                                <img src="~/photography/@item.Name" asp-append-version="true" class="img-fluid mb-2" alt="white sample">
+                            </a>
+                            <a href="@Url.Action("DeletePhoto","photo",new { id=item.PhotoId})" style="float:right">Delete</a>
+                            <a asp-action="Details" asp-route-id="@item.PhotoId">Details</a>
+                            <a asp-action="Edit" asp-route-id="@item.PhotoId">Edit</a>
+                            <a asp-action="Share" asp-route-id="@item.PhotoId">Share</a>
+                        </div>
                     }
 
                 }
